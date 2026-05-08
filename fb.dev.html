@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foysal Bhuiyan — Full Stack Developer & Digital Marketer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080c10;
+  --bg2:#0d1117;
+  --bg3:#111820;
+  --surface:#131c26;
+  --surface2:#1a2535;
+  --border:#1e2d3d;
+  --border2:#243344;
+  --teal:#00e5c3;
+  --teal-dim:#00b89d;
+  --teal-glow:rgba(0,229,195,0.12);
+  --amber:#f5a623;
+  --amber-dim:#c97f0f;
+  --text:#e8edf2;
+  --text2:#8899aa;
+  --text3:#4a5a6a;
+  --mono:'Space Mono',monospace;
+  --display:'Syne',sans-serif;
+  --body:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.7;overflow-x:hidden}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--teal-dim);border-radius:2px}
+
+/* NOISE OVERLAY */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 4rem;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(20px);background:rgba(8,12,16,0.85);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--mono);font-size:0.85rem;color:var(--teal);letter-spacing:0.1em}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:0.72rem;color:var(--text2);text-decoration:none;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--teal)}
+.nav-cta{font-family:var(--mono);font-size:0.72rem;padding:0.5rem 1.2rem;border:1px solid var(--teal);color:var(--teal);text-decoration:none;letter-spacing:0.12em;text-transform:uppercase;transition:all 0.2s}
+.nav-cta:hover{background:var(--teal);color:var(--bg)}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:8rem 4rem 4rem;overflow:hidden}
+.hero-grid-lines{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:0.3}
+.hero-glow{position:absolute;top:20%;left:60%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,229,195,0.06) 0%,transparent 70%);pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:800px}
+.hero-tag{font-family:var(--mono);font-size:0.75rem;color:var(--teal);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem}
+.hero-tag::before{content:'';display:inline-block;width:32px;height:1px;background:var(--teal)}
+.hero-name{font-family:var(--display);font-size:clamp(3rem,8vw,6.5rem);font-weight:800;line-height:0.95;letter-spacing:-0.02em;margin-bottom:1.2rem}
+.hero-name span{color:var(--teal)}
+.hero-roles{font-family:var(--mono);font-size:0.9rem;color:var(--text2);margin-bottom:2rem;letter-spacing:0.05em}
+.hero-roles em{color:var(--amber);font-style:normal}
+.hero-desc{font-size:1.05rem;color:var(--text2);max-width:560px;line-height:1.8;margin-bottom:2.5rem;font-weight:300}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{font-family:var(--mono);font-size:0.78rem;padding:0.85rem 2rem;background:var(--teal);color:var(--bg);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;transition:all 0.2s}
+.btn-primary:hover{background:var(--teal-dim)}
+.btn-outline{font-family:var(--mono);font-size:0.78rem;padding:0.85rem 2rem;border:1px solid var(--border2);color:var(--text2);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s}
+.btn-outline:hover{border-color:var(--teal);color:var(--teal)}
+.hero-photo-wrap{position:absolute;right:4rem;bottom:0;top:50%;transform:translateY(-50%);width:320px;display:flex;flex-direction:column;align-items:center}
+.hero-photo-frame{position:relative;width:260px;height:280px}
+.hero-photo-frame::before{content:'';position:absolute;inset:-8px;border:1px solid var(--teal);opacity:0.3;transform:rotate(2deg)}
+.hero-photo-frame::after{content:'';position:absolute;inset:-16px;border:1px solid var(--border2);transform:rotate(-1deg)}
+.hero-photo-frame img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:grayscale(20%) contrast(1.05)}
+.hero-stat-row{display:flex;gap:2rem;margin-top:3rem;position:relative;z-index:1}
+.hero-stat{text-align:center}
+.hero-stat .num{font-family:var(--display);font-size:2rem;font-weight:800;color:var(--teal)}
+.hero-stat .lbl{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-spacing:0.15em;text-transform:uppercase;margin-top:0.2rem}
+
+/* SECTION COMMON */
+section{padding:6rem 4rem;position:relative}
+.section-header{margin-bottom:4rem}
+.section-tag{font-family:var(--mono);font-size:0.7rem;color:var(--teal);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem}
+.section-tag::before{content:'//';opacity:0.5}
+.section-title{font-family:var(--display);font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.1;letter-spacing:-0.02em}
+.section-title span{color:var(--teal)}
+.section-line{width:60px;height:2px;background:var(--teal);margin-top:1.2rem;opacity:0.5}
+
+/* SKILLS */
+#skills{background:var(--bg2)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.skill-card{background:var(--surface);border:1px solid var(--border);padding:2rem;position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.3s}
+.skill-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),transparent)}
+.skill-card:hover{border-color:var(--border2);transform:translateY(-4px)}
+.skill-card-icon{font-size:1.5rem;margin-bottom:1rem}
+.skill-card-title{font-family:var(--display);font-size:1rem;font-weight:700;margin-bottom:1rem;color:var(--text)}
+.skill-tags{display:flex;flex-wrap:wrap;gap:0.5rem}
+.tag{font-family:var(--mono);font-size:0.65rem;padding:0.3rem 0.7rem;background:var(--surface2);border:1px solid var(--border2);color:var(--text2);letter-spacing:0.08em}
+.tag.teal{background:var(--teal-glow);border-color:rgba(0,229,195,0.3);color:var(--teal)}
+
+/* SERVICES */
+#services{background:var(--bg)}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
+.service-card{padding:2.5rem;border:1px solid var(--border);position:relative;cursor:default;transition:all 0.3s}
+.service-card:hover{border-color:var(--teal);background:var(--surface)}
+.service-num{font-family:var(--mono);font-size:0.7rem;color:var(--text3);letter-spacing:0.2em;margin-bottom:1.5rem}
+.service-title{font-family:var(--display);font-size:1.3rem;font-weight:700;margin-bottom:1rem;line-height:1.2}
+.service-desc{font-size:0.9rem;color:var(--text2);line-height:1.8;font-weight:300}
+.service-list{margin-top:1.2rem;list-style:none}
+.service-list li{font-size:0.82rem;color:var(--text3);padding:0.3rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.5rem}
+.service-list li::before{content:'→';color:var(--teal);font-family:var(--mono);font-size:0.7rem}
+
+/* PROJECTS */
+#projects{background:var(--bg2)}
+.projects-grid{display:grid;gap:1.5rem}
+.project-card{background:var(--surface);border:1px solid var(--border);padding:2.5rem;display:grid;grid-template-columns:1fr auto;gap:2rem;transition:all 0.3s;position:relative;overflow:hidden}
+.project-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--teal);transition:width 0.4s}
+.project-card:hover::after{width:100%}
+.project-card:hover{border-color:var(--border2)}
+.project-type{font-family:var(--mono);font-size:0.65rem;color:var(--amber);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.75rem}
+.project-title{font-family:var(--display);font-size:1.5rem;font-weight:700;margin-bottom:0.75rem}
+.project-desc{font-size:0.9rem;color:var(--text2);line-height:1.8;font-weight:300;margin-bottom:1.5rem}
+.project-stack{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1rem}
+.project-link{font-family:var(--mono);font-size:0.72rem;color:var(--teal);text-decoration:none;letter-spacing:0.1em;display:flex;align-items:center;gap:0.5rem;transition:gap 0.2s}
+.project-link:hover{gap:0.8rem}
+.project-highlights{padding:1.5rem;background:var(--bg2);border:1px solid var(--border);min-width:220px}
+.project-highlights h4{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem}
+.highlight-item{font-size:0.82rem;color:var(--text2);padding:0.4rem 0;border-bottom:1px solid var(--border);display:flex;gap:0.5rem}
+.highlight-item::before{content:'✓';color:var(--teal);font-size:0.7rem;margin-top:0.1rem;flex-shrink:0}
+
+/* SAAS */
+#saas{background:var(--bg)}
+.saas-banner{background:var(--surface);border:1px solid var(--border);padding:3rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;position:relative;overflow:hidden}
+.saas-banner::before{content:'LIVE';position:absolute;top:1.5rem;right:1.5rem;font-family:var(--mono);font-size:0.6rem;color:var(--teal);letter-spacing:0.2em;padding:0.25rem 0.6rem;border:1px solid var(--teal);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.saas-name{font-family:var(--display);font-size:2rem;font-weight:800;margin-bottom:0.5rem}
+.saas-name span{color:var(--teal)}
+.saas-tagline{color:var(--text2);font-size:0.95rem;margin-bottom:1.5rem;font-weight:300}
+.saas-features{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-top:1.5rem}
+.saas-feature{font-size:0.83rem;color:var(--text2);display:flex;gap:0.5rem;align-items:flex-start}
+.saas-feature::before{content:'◆';color:var(--teal);font-size:0.5rem;margin-top:0.35rem;flex-shrink:0}
+.saas-actions{display:flex;flex-direction:column;gap:1rem;align-items:flex-start}
+.saas-metric{text-align:center;padding:1.5rem 2rem;background:var(--bg);border:1px solid var(--border)}
+.saas-metric .num{font-family:var(--display);font-size:2.5rem;font-weight:800;color:var(--teal);display:block}
+.saas-metric .lbl{font-family:var(--mono);font-size:0.62rem;color:var(--text3);letter-spacing:0.15em;text-transform:uppercase}
+
+/* EXPERIENCE */
+#experience{background:var(--bg2)}
+.exp-timeline{position:relative;padding-left:2rem}
+.exp-timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(var(--teal),var(--border),transparent)}
+.exp-item{position:relative;padding:0 0 3.5rem 2.5rem}
+.exp-item::before{content:'';position:absolute;left:-5px;top:6px;width:10px;height:10px;background:var(--teal);border-radius:50%;box-shadow:0 0 0 4px var(--bg2),0 0 0 6px var(--teal-dim)}
+.exp-period{font-family:var(--mono);font-size:0.68rem;color:var(--text3);letter-spacing:0.15em;margin-bottom:0.5rem}
+.exp-role{font-family:var(--display);font-size:1.3rem;font-weight:700;margin-bottom:0.2rem}
+.exp-company{font-family:var(--mono);font-size:0.8rem;color:var(--teal);margin-bottom:1rem}
+.exp-desc{font-size:0.9rem;color:var(--text2);line-height:1.8;font-weight:300;max-width:680px}
+.exp-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem}
+
+/* CONTACT */
+#contact{background:var(--bg);position:relative;overflow:hidden}
+#contact::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(0,229,195,0.05),transparent 70%)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.contact-info h3{font-family:var(--display);font-size:1.8rem;font-weight:700;margin-bottom:1rem;line-height:1.2}
+.contact-info p{color:var(--text2);font-size:0.95rem;line-height:1.8;font-weight:300;margin-bottom:2rem}
+.contact-detail{display:flex;align-items:center;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--border)}
+.contact-detail .icon{width:36px;height:36px;background:var(--teal-glow);border:1px solid rgba(0,229,195,0.2);display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:var(--teal);font-family:var(--mono);flex-shrink:0}
+.contact-detail .label{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase}
+.contact-detail .value{font-size:0.9rem;color:var(--text)}
+.contact-form{display:flex;flex-direction:column;gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:0.4rem}
+.form-group label{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-spacing:0.12em;text-transform:uppercase}
+.form-group input,.form-group textarea{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:0.85rem 1rem;outline:none;transition:border-color 0.2s;resize:none}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--teal)}
+.form-group textarea{height:120px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.submit-btn{font-family:var(--mono);font-size:0.78rem;padding:1rem 2rem;background:var(--teal);color:var(--bg);border:none;cursor:pointer;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;transition:all 0.2s;align-self:flex-start}
+.submit-btn:hover{background:var(--teal-dim)}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:2rem 4rem;display:flex;align-items:center;justify-content:space-between}
+.footer-logo{font-family:var(--mono);font-size:0.8rem;color:var(--teal)}
+.footer-copy{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-spacing:0.1em}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  section{padding:4rem 1.5rem}
+  #hero{padding:7rem 1.5rem 4rem;flex-direction:column}
+  .hero-photo-wrap{display:none}
+  .contact-grid{grid-template-columns:1fr}
+  .saas-banner{grid-template-columns:1fr}
+  .project-card{grid-template-columns:1fr}
+  .project-highlights{min-width:auto}
+  footer{padding:1.5rem;flex-direction:column;gap:0.5rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">FB.DEV</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#saas">SaaS</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-lines"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Available for remote work</div>
+    <h1 class="hero-name">Foysal<br><span>Bhuiyan</span></h1>
+    <p class="hero-roles">Full Stack Developer &nbsp;/&nbsp; <em>Digital Marketer</em> &nbsp;/&nbsp; Systems Builder</p>
+    <p class="hero-desc">I design, build, and ship complete digital systems — from pixel-perfect frontends to robust backends — then make sure the right people find them through data-driven marketing.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View Projects →</a>
+      <a href="mailto:foysal@selenyz.com" class="btn-outline">foysal@selenyz.com</a>
+    </div>
+    <div class="hero-stat-row">
+      <div class="hero-stat"><div class="num">7+</div><div class="lbl">Yrs Building</div></div>
+      <div class="hero-stat"><div class="num">23+</div><div class="lbl">Systems Shipped</div></div>
+      <div class="hero-stat"><div class="num">100%</div><div class="lbl">End-to-End</div></div>
+    </div>
+  </div>
+  <!-- <div class="hero-photo-wrap">
+    <div class="hero-photo-frame">
+      <img src="644520004_1376224634307334_8355660098421690536_n.jpg" alt="Foysal Bhuiyan" id="hero-img" onerror="this.style.display='none'">
+    </div>
+  </div> -->
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <div class="section-tag">What I work with</div>
+    <h2 class="section-title">Technical <span>Skills</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">⬡</div>
+      <div class="skill-card-title">Frontend Development</div>
+      <div class="skill-tags">
+        <span class="tag teal">HTML5</span><span class="tag teal">CSS3</span><span class="tag teal">JavaScript</span>
+        <span class="tag">Responsive UI</span><span class="tag">Performance Optimization</span><span class="tag">No-Framework Builds</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">⬡</div>
+      <div class="skill-card-title">Backend Development</div>
+      <div class="skill-tags">
+        <span class="tag teal">PHP</span><span class="tag teal">MySQL</span><span class="tag teal">Laravel</span>
+        <span class="tag">REST APIs</span><span class="tag">Session Architecture</span><span class="tag">Git</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">⬡</div>
+      <div class="skill-card-title">Infrastructure & DevOps</div>
+      <div class="skill-tags">
+        <span class="tag teal">Linux Server</span><span class="tag teal">LiteSpeed</span><span class="tag teal">Cloudflare</span>
+        <span class="tag">CDN & Security</span><span class="tag">Payment Gateway</span><span class="tag">Deployment</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">⬡</div>
+      <div class="skill-card-title">Digital Marketing & Tracking</div>
+      <div class="skill-tags">
+        <span class="tag teal">Meta CAPI</span><span class="tag teal">GA4</span><span class="tag teal">GTM</span>
+        <span class="tag">Meta Pixel</span><span class="tag">Funnel Tracking</span><span class="tag">Ad Optimization</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header reveal">
+    <div class="section-tag">What I offer</div>
+    <h2 class="section-title">My <span>Services</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-num">01</div>
+      <h3 class="service-title">Full Stack Web Development</h3>
+      <p class="service-desc">End-to-end web systems built from the ground up — custom UI, business logic, database design, and deployment. No bloated frameworks, just clean production code.</p>
+      <ul class="service-list">
+        <li>Custom eCommerce platforms</li>
+        <li>Business management systems</li>
+        <li>REST API design & integration</li>
+        <li>Performance & speed optimization</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">02</div>
+      <h3 class="service-title">Digital Marketing & Tracking</h3>
+      <p class="service-desc">Data-driven marketing setup that closes the loop between your ads and your actual revenue. Accurate attribution, full-funnel visibility, smarter spend.</p>
+      <ul class="service-list">
+        <li>Meta Pixel + Conversion API (CAPI)</li>
+        <li>GA4 & GTM configuration</li>
+        <li>Full funnel event tracking</li>
+        <li>Ad performance optimization</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">03</div>
+      <h3 class="service-title">Server & Infrastructure Setup</h3>
+      <p class="service-desc">Production-grade server configuration, CDN setup, and performance tuning. LiteSpeed + Cloudflare stacks that are fast, secure, and stable.</p>
+      <ul class="service-list">
+        <li>Linux server management</li>
+        <li>LiteSpeed optimization</li>
+        <li>Cloudflare CDN & security</li>
+        <li>Caching & request optimization</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">04</div>
+      <h3 class="service-title">SaaS & System Architecture</h3>
+      <p class="service-desc">Scalable system design for startups and businesses that need more than a template. POS systems, order management, multi-role platforms — built for real use.</p>
+      <ul class="service-list">
+        <li>POS & order management systems</li>
+        <li>Custom coupon & cart engines</li>
+        <li>Multi-user role architecture</li>
+        <li>Scalable DB schema design</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <div class="section-tag">What I've shipped</div>
+    <h2 class="section-title">Key <span>Projects</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <div>
+        <div class="project-type">eCommerce Platform</div>
+        <h3 class="project-title">Selenyz.com — Custom eCommerce System</h3>
+        <p class="project-desc">A fully custom eCommerce platform built from scratch — no Shopify, no WooCommerce. Custom frontend UI, session-based cart, dynamic coupon engine, full tracking stack, and server infrastructure all designed and deployed independently.</p>
+        <div class="project-stack">
+          <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">JavaScript</span><span class="tag">LiteSpeed</span><span class="tag">Cloudflare</span><span class="tag">Meta CAPI</span><span class="tag">GA4</span><span class="tag">GTM</span>
+        </div>
+        <a href="https://selenyz.com" class="project-link" target="_blank">Visit site →</a>
+      </div>
+      <div class="project-highlights">
+        <h4>Highlights</h4>
+        <div class="highlight-item">Custom frontend & backend from zero</div>
+        <div class="highlight-item">Session-based cart system</div>
+        <div class="highlight-item">Dynamic coupon automation</div>
+        <div class="highlight-item">Full funnel ad tracking</div>
+        <div class="highlight-item">Self-managed server stack</div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div>
+        <div class="project-type">SaaS / POS System</div>
+        <h3 class="project-title">Selenyz Restro POS — Restaurant Management</h3>
+        <p class="project-desc">A full-stack restaurant point-of-sale system with real-time order handling, intuitive frontend UI, transaction logic, and database architecture — built for daily production use in a live restaurant environment.</p>
+        <div class="project-stack">
+          <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">JavaScript</span><span class="tag">REST API</span><span class="tag">Linux</span>
+        </div>
+        <a href="http://gramerbari.pos.selenyz.com/" class="project-link" target="_blank">View live →</a>
+      </div>
+      <div class="project-highlights">
+        <h4>Highlights</h4>
+        <div class="highlight-item">Real-time order management</div>
+        <div class="highlight-item">Full frontend + backend</div>
+        <div class="highlight-item">Transaction flow logic</div>
+        <div class="highlight-item">Optimized DB schema</div>
+        <div class="highlight-item">Production deployed</div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div>
+        <div class="project-type">Infrastructure & Marketing</div>
+        <h3 class="project-title">Server Optimization & Tracking Stack</h3>
+        <p class="project-desc">Designed and deployed a high-performance server stack (LiteSpeed + Cloudflare) alongside a complete marketing tracking infrastructure — connecting ad spend directly to purchase events with server-side accuracy.</p>
+        <div class="project-stack">
+          <span class="tag">LiteSpeed</span><span class="tag">Cloudflare</span><span class="tag">Meta CAPI</span><span class="tag">GA4</span><span class="tag">GTM</span><span class="tag">Linux</span>
+        </div>
+      </div>
+      <div class="project-highlights">
+        <h4>Highlights</h4>
+        <div class="highlight-item">Server-side event tracking</div>
+        <div class="highlight-item">Reduced load times</div>
+        <div class="highlight-item">CDN & DDoS protection</div>
+        <div class="highlight-item">Caching & optimization</div>
+        <div class="highlight-item">Accurate ad attribution</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SAAS PRODUCTS -->
+<section id="saas">
+  <div class="section-header reveal">
+    <div class="section-tag">Products I've built</div>
+    <h2 class="section-title">SaaS <span>Products</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="saas-banner reveal">
+    <div>
+      <div class="saas-name"><span>Selenyz</span> Restro POS</div>
+      <div class="saas-tagline">A full-stack restaurant point-of-sale system built for real operations.</div>
+      <div class="saas-features">
+        <div class="saas-feature">Real-time order management dashboard</div>
+        <div class="saas-feature">Table & category management</div>
+        <div class="saas-feature">Transaction & billing engine</div>
+        <div class="saas-feature">Optimized for speed & reliability</div>
+        <div class="saas-feature">Custom frontend UI — no templates</div>
+        <div class="saas-feature">Live in production environment</div>
+      </div>
+      <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
+        <a href="http://gramerbari.pos.selenyz.com/" class="btn-primary" target="_blank">View Live Product →</a>
+        <a href="mailto:foysal@selenyz.com" class="btn-outline">License / Custom Build</a>
+      </div>
+    </div>
+    <div class="saas-actions">
+      <div class="saas-metric"><span class="num">102</span><span class="lbl">Live Restaurant</span></div>
+      <div class="saas-metric"><span class="num">100%</span><span class="lbl">Custom Built</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <div class="section-tag">Where I've worked</div>
+    <h2 class="section-title">Work <span>Experience</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="exp-timeline">
+    <div class="exp-item reveal">
+      <div class="exp-period">2022 — Present</div>
+      <div class="exp-role">Founder & Full Stack Developer</div>
+      <div class="exp-company">Selenyz · selenyz.com</div>
+      <p class="exp-desc">Built and launched a complete custom eCommerce platform independently — frontend, backend, tracking, and server infrastructure. Handles everything from product management to ad attribution. Still actively developed and deployed.</p>
+      <div class="exp-tags">
+        <span class="tag teal">PHP</span><span class="tag teal">MySQL</span><span class="tag teal">JavaScript</span><span class="tag">Laravel</span><span class="tag">Meta CAPI</span><span class="tag">GA4</span><span class="tag">GTM</span><span class="tag">LiteSpeed</span><span class="tag">Cloudflare</span>
+      </div>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-period">2023 — Present</div>
+      <div class="exp-role">Full Stack Developer</div>
+      <div class="exp-company">Selenyz Restro POS · gramerbari.pos.selenyz.com</div>
+      <p class="exp-desc">Designed and developed a restaurant POS system from scratch — intuitive frontend UI for staff, real-time order handling, transaction logic, and a database architecture built for reliability under daily production load.</p>
+      <div class="exp-tags">
+        <span class="tag teal">PHP</span><span class="tag teal">MySQL</span><span class="tag teal">JavaScript</span><span class="tag">REST API</span><span class="tag">Linux</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header reveal">
+    <div class="section-tag">Get in touch</div>
+    <h2 class="section-title">Let's <span>Work</span> Together</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <h3>Open to remote roles &amp; freelance projects worldwide.</h3>
+      <p>Whether you need a complete system built, a tracking stack set up, or just want to talk about a project — I'm available.</p>
+      <div class="contact-detail">
+        <div class="icon">@</div>
+        <div><div class="label">Email</div><div class="value">foysal@selenyz.com</div></div>
+      </div>
+      <div class="contact-detail">
+        <div class="icon">#</div>
+        <div><div class="label">Phone</div><div class="value">+880 190 352 350</div></div>
+      </div>
+      <div class="contact-detail">
+        <div class="icon">↗</div>
+        <div><div class="label">Location</div><div class="value">Dhaka, Bangladesh · Remote Available</div></div>
+      </div>
+      <div class="contact-detail">
+        <div class="icon">⊕</div>
+        <div><div class="label">Website</div><div class="value">selenyz.com</div></div>
+      </div>
+    </div>
+    <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="your@email.com" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" placeholder="Project idea, collaboration, etc.">
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Tell me about your project..." required></textarea>
+      </div>
+      <button type="submit" class="submit-btn" id="submit-btn">Send Message →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">FB.DEV — Foysal Bhuiyan</div>
+  <div class="footer-copy">© 2026 · Built with clean code · Dhaka, Bangladesh</div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => {
+    if(el.isIntersecting) { el.target.classList.add('visible'); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Stagger children in grids
+document.querySelectorAll('.skills-grid, .services-grid, .projects-grid').forEach(grid => {
+  grid.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.1) + 's';
+  });
+});
+
+// Contact form
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const subject = document.getElementById('subject').value;
+  const message = document.getElementById('message').value;
+  const mailto = `mailto:foysal@selenyz.com?subject=${encodeURIComponent(subject || 'Portfolio Inquiry')}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
+  window.location.href = mailto;
+  btn.textContent = 'Opening Mail Client...';
+  setTimeout(() => { btn.textContent = 'Send Message →'; }, 2000);
+}
+
+// Active nav link highlighting
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if(window.scrollY >= s.offsetTop - 200) current = s.id; });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--teal)' : '';
+  });
+});
+</script>
+</body>
+</html>
